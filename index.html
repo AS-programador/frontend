@@ -16,11 +16,10 @@
     <script>
       async function askAI() {
         const responseBox = document.getElementById("response");
-        responseBox.innerText = "Request sent."
         let userText = document.getElementById("prompt").value;
         let cleanText = encodeURIComponent(userText);
         let APIUrl = "https://backend-wg4l.onrender.com/chat?prompt=" + cleanText
-        responseBox.innerText = "Asking AI."
+        responseBox.innerText = "Getting your response..."
         try  {
           let response = await fetch(APIUrl)
           let data = await response.json();
