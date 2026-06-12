@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <label for="prompt">Questions?</label>
+    <br>
+    <textarea id="prompt" name="prompt" rows="5" cols="75" placeholder="Talk to our AI here!"></textarea>
+    <br><br>
+    
+    <button type="button" onclick="askAI()">Get AI Answer</button>
+    <br><br>
+
+    <h3>AI Response:</h3>
+    <div id="response" style="padding: 15px; border: 1px solid #ccc; background: #f9f9f9; min-height: 50px; font-family: sans-serif; line-height: 1.6;">
+      Waiting for prompt...
+    </div>
+    <script>
+      async function askAI() {
+        let userText = document.getElementByID("prompt").value;
+        let cleanText = encodeURIComponent(usertext);
+        let APIUrl = "https://backend-wg4l.onrender.com/chat?prompt=" + cleanText
+        try  {
+          let response await fetch(APIUrl)
+          let data await response.json();
+          responseBox.style.whiteSpace = "pre-line";
+          responseBox.innerText = data.answer
+        } catch (error) {
+          responseBox.innerText = "Something happened when trying to connect to the AI";
+          console.error("Additional Details:", error);
+        } 
+      }
+    </script>
+  </body>
+</html>
 
