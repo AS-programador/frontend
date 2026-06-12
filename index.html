@@ -15,14 +15,15 @@
     </div>
     <script>
       async function askAI() {
+        const responseBox = document.getElementById("responseBox");
         responseBox.innerText = "Request sent."
-        let userText = document.getElementByID("prompt").value;
-        let cleanText = encodeURIComponent(usertext);
+        let userText = document.getElementById("prompt").value;
+        let cleanText = encodeURIComponent(userText);
         let APIUrl = "https://backend-wg4l.onrender.com/chat?prompt=" + cleanText
         responseBox.innerText = "Asking AI."
         try  {
-          let response await fetch(APIUrl)
-          let data await response.json();
+          let response = await fetch(APIUrl)
+          let data = await response.json();
           responseBox.style.whiteSpace = "pre-line";
           responseBox.innerText = data.answer
         } catch (error) {
