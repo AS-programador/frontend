@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
   <body>
     <label for="prompt">Questions?</label>
     <br>
@@ -10,27 +13,34 @@
     <br><br>
 
     <h3>AI Response:</h3>
-    <div id="response" style="padding: 15px; border: 1px solid #ccc; background: #f9f9f9; min-height: 50px; font-family: sans-serif; line-height: 1.6;">
+    <div id="responseBox" style="padding: 15px; border: 1px solid #ccc; background: #f9f9f9; min-height: 50px; font-family: sans-serif; line-height: 1.6;">
       Waiting for prompt...
     </div>
+
     <script>
       async function askAI() {
-        const responseBox = document.getElementById("response");
+        
+        const responseBox = document.getElementById("responseBox");
+        responseBox.innerText = "Request sent.";
         let userText = document.getElementById("prompt").value;
         let cleanText = encodeURIComponent(userText);
-        let APIUrl = "https://backend-wg4l.onrender.com/chat?prompt=" + cleanText
-        responseBox.innerText = "Getting your response..."
+        let APIUrl = "https://backend-wg4l.onrender.com/chat?prompt=" + cleanText;
+        responseBox.innerText = "Asking AI.";
+        
         try  {
-          let response = await fetch(APIUrl)
+          
+          let response = await fetch(APIUrl);
           let data = await response.json();
-          responseBox.style.whiteSpace = "pre-line";
-          responseBox.innerText = data.answer
+          responseBox.style.whiteSpace = "normal"; 
+          responseBox.innerHTML = marked.parse(data.answer);
+          
         } catch (error) {
+          
           responseBox.innerText = "Something happened when trying to connect to the AI";
           console.error("Additional Details:", error);
+          
         } 
       }
     </script>
   </body>
 </html>
-
