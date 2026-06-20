@@ -6,7 +6,6 @@
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 
-
  <title>STEM AI Competition</title>
 <style>
  body {
@@ -61,32 +60,15 @@
    font-size: 0.9rem;
  }
 
-
-
-
-
-
-
-
  #Home_page {
    visibility:visible;
    display:block;
  }
 
-
-
-
-
-
-
-
  #Upload_page {
    visibility:hidden;
    display:none;
  }
-
-
-
 
  #Picture_page {
   visibility:hidden;
@@ -97,24 +79,10 @@
   FYI: None of these comments have actual information*/
  }
 
-
-
-
-
-
-
-
  #Analysis_page {
    visibility:hidden;
    display:none;
  }
-
-
-
-
-
-
-
 
  #results {
    visibility:hidden;
@@ -141,25 +109,10 @@
  </div>
 </div>
 
-
-
-
-
-
-
-
 <div id="Upload_page">
  <div class="container">
    <h1>STEM AI Competition</h1>
    <p>Upload your project image</p>
-
-
-
-
-
-
-
-
    <form id="uploadForm">
      <input id="fileInput" name="png" type="file" accept=".png" required />
      <button type="submit">Upload</button>
@@ -169,28 +122,16 @@
  </div>
 </div>
 
-
-
-
 <div id="Picture_page">
 <div class="container">
    <video id="video" width="100%" height="100%" autoplay></video>
    <button class="btn btn-danger" onClick="stopCam()">Stop Cam</button>
    <button class="btn btn-success" onClick="startCam()">Start Cam</button>
-
-
    <p>Following <a href="https://www.geeksforgeeks.org/javascript/how-to-integrate-webcam-using-javascript-on-html5/">this tutorial</a></p>
    <p>It doesn't seem to work, however</p>
    <button id="Moveto_Analysis2">Analysis</button>
  </div>
 </div>
-
-
-
-
-
-
-
 
 <div id="Analysis_page">
  <!--
@@ -219,54 +160,22 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
  const uploadForm = document.getElementById('uploadForm');
  const statusText = document.getElementById('status');
 
-
  var fileInput = document.getElementById('fileInput');
-
-
-
 
  const Home_page = document.getElementById("Home_page");
  const Upload_page = document.getElementById("Upload_page");
  const Picture_page = document.getElementById("Picture_page");
  const Analysis_page = document.getElementById("Analysis_page");
 
-
-
-
-
-
-
-
  const Moveto_Home = document.getElementById("Moveto_home");
  const Moveto_Upload = document.getElementById("Moveto_Upload");
  const Moveto_Picture = document.getElementById("Moveto_Picture");
  const Moveto_Analysis = document.getElementById("Moveto_Analysis");
  const Moveto_Analysis2 = document.getElementById("Moveto_Analysis2");
-
-
-
-
-
-
-
 
  Moveto_Upload.addEventListener("click", function Upload_Page() {
    ClearTabs();
@@ -299,9 +208,6 @@
    //document.body.style.backgroundColor = "#DDDDFF";
  });
 
-
-
-
  function ClearTabs() {
   Home_page.style.visibility = "hidden";
   Home_page.style.display = "none";
@@ -312,9 +218,6 @@
   Analysis_page.style.visibility = "hidden";
   Analysis_page.style.display = "none";
  }
-
-
-
 
  uploadForm.addEventListener('submit', function(event) {
    event.preventDefault();
@@ -332,7 +235,6 @@
    }
  });
 
-
  const stopCam = () => {
    const video = document.getElementById('video');
    const stream = video.srcObject;
@@ -340,7 +242,6 @@
    tracks.forEach(track => track.stop());
    video.srcObject = null;
  };
-
 
  const startCam = () => {
    const video = document.getElementById('video');
@@ -356,7 +257,6 @@
      console.log("getUserMedia not supported on your browser!");
    }
  };
-
 
  $(document).ready(() => {
    startCam();
