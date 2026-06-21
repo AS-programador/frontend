@@ -152,6 +152,19 @@
                   `*-*   `*-*  `*-*' 
  -->
  <div class="container">
+  <label for="prompt">Questions?</label>
+    <br>
+    <textarea id="prompt" name="prompt" rows="5" cols="75" placeholder="Talk to our AI here!"></textarea>
+    <br><br>
+    
+    <button type="button" onclick="askAI()">Get AI Answer</button>
+    <br><br>
+
+    <h3>AI Response:</h3>
+    <div id="responseBox" style="padding: 15px; border: 1px solid #ccc; background: #f9f9f9; min-height: 50px; font-family: sans-serif; line-height: 1.6;">
+      Waiting for prompt...
+    </div>
+
    <p>Nothing here right now</p>
    <p>Results</p>
    <!--Get the thing from python-->
@@ -261,6 +274,31 @@
  $(document).ready(() => {
    startCam();
  });
+
+    
+ async function askAI() {
+        
+  const responseBox = document.getElementById("responseBox");
+  responseBox.innerText = "Request sent.";
+  let userText = document.getElementById("prompt").value;
+  let cleanText = encodeURIComponent(userText);
+  let APIUrl = "https://backend-wg4l.onrender.com/chat?prompt=" + cleanText;
+  responseBox.innerText = "Asking AI.";
+        
+  try  {
+          
+   let response = await fetch(APIUrl);
+   let data = await response.json();
+   responseBox.style.whiteSpace = "normal"; 
+   responseBox.innerHTML = marked.parse(data.answer);
+          
+   } catch (error) {
+          
+     responseBox.innerText = "Something happened when trying to connect to the AI";
+     console.error("Additional Details:", error);
+          
+   } 
+  }
 </script>
 </body>
 </html>
